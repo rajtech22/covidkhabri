@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid Khabri</title>
+    <link href="tailwind.min.css" rel="stylesheet">
+    <style>
+        .card {
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+   <div class="container pt-8 w-3/4 m-auto">
+        <div class="global">
+            <h1 class="text-3xl text-center">Global</h1>
+            <div class="cards mt-4">
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total confirmed cases: <span id="total" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total death cases: <span id="total-deaths" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total recovered cases: <span id="total-recovered" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New confirmed cases: <span id="new" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New death cases: <span id="new-deaths" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New recovered cases: <span id="new-recovered" class="font-semibold text-gray-500"></span>
+                </div>
+            </div>
+        </div>
+        <div class="india mt-12">
+            <h1 class="text-3xl text-center">India</h1>
+            <div class="cards mt-4">
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total confirmed cases: <span id="in-total" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total death cases: <span id="in-total-deaths" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    Total recovered cases: <span id="in-total-recovered" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New confirmed cases: <span id="in-new" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New death cases: <span id="in-new-deaths" class="font-semibold text-gray-500"></span>
+                </div>
+                <div class="card bg-gray-100 px-6 py-4 my-2 hover:bg-gray-300 cursor-pointer">
+                    New recovered cases: <span id="in-new-recovered" class="font-semibold text-gray-500"></span>
+                </div>
+            </div>
+        </div>
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+    <script
+      src="jquery.js">
+    </script>
+    <script>        
+        $.get('http://api.covid19api.com/summary', function(data) {
+            console.log(data)
+            const global = data.Global
+            const india = data.Countries[76]
+            console.log(india)
+            $('#total').text(global.TotalConfirmed) 
+            $('#total-deaths').text(global.TotalDeaths)
+            $('#total-recovered').text(global.TotalRecovered)
+            $('#new').text(global.NewConfirmed)
+            $('#new-deaths').text(global.NewDeaths)
+            $('#new-recovered').text(global.NewRecovered)
+            $('#in-total').text(india.TotalConfirmed) 
+            $('#in-total-deaths').text(india.TotalDeaths)
+            $('#in-total-recovered').text(india.TotalRecovered)
+            $('#in-new').text(india.NewConfirmed)
+            $('#in-new-deaths').text(india.NewDeaths)
+            $('#in-new-recovered').text(india.NewRecovered)
+        })
+    </script>
+</body>
+</html>
